@@ -13,9 +13,9 @@ public class UserAdition {
 	@Autowired
 	private UserRepository repository;			
 
-	public User save(UserDTO user) {
-		if (isUserTypeValid(user)) {
-			return repository.save(user.toEntity());
+	public User save(UserDTO user) throws Exception {
+		if (!isUserTypeValid(user)) {
+			throw new Exception("Não foi possivel salvar o usuário pois o tipo dele é invalido");
 		}		
 		return repository.save(user.toEntity());
 	}

@@ -38,7 +38,7 @@ public class UserController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public UserDTO save(@RequestBody UserDTO userDTO) {
+	public UserDTO save(@RequestBody UserDTO userDTO) throws Exception {
 		return new UserDTO(userAdition.save(userDTO));
 	}
 
@@ -48,7 +48,7 @@ public class UserController {
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public UserDTO merge(@RequestBody UserDTO userDTO) {
+	public UserDTO merge(@RequestBody UserDTO userDTO) throws Exception{
 		return new UserDTO(userAdition.save(userDTO));
 	}
 }
