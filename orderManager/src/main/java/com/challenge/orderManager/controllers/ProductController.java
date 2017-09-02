@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.challenge.orderManager.dtos.ProductDTO;
 import com.challenge.orderManager.dtos.ProductListDTO;
 import com.challenge.orderManager.entities.Product;
-import com.challenge.orderManager.interactions.product.ProductAdition;
+import com.challenge.orderManager.interactions.ProductAdition;
 import com.challenge.orderManager.repositories.ProductRepository;
 
 @RestController
@@ -31,10 +31,10 @@ public class ProductController {
 	@RequestMapping(value = "/{productId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ProductDTO get(@PathVariable String productId) {
 		Product product = productRepository.getProduct(productId);
-		return new ProductDTO(product.getId(), product.getName(), product.getPrice());		
+		return new ProductDTO(product);		
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ProductListDTO list() {
 		return new ProductListDTO(productRepository.getProductList().stream().map( ProductDTO::new).collect( Collectors.toList() ));			
 	}
@@ -42,7 +42,7 @@ public class ProductController {
 	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ProductDTO save(@RequestBody ProductDTO productDto) {
 		Product product = productAdition.save(productDto.toEntity());
-		return new ProductDTO(product.getId(), product.getName(), product.getPrice());
+		return new ProductDTO(product);
 	}
 
 	@RequestMapping(value = "/{productId}", method = RequestMethod.DELETE)
@@ -53,6 +53,6 @@ public class ProductController {
 	@RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ProductDTO merge(@RequestBody ProductDTO productDto) {
 		Product product = productAdition.save(productDto.toEntity());
-		return new ProductDTO(product.getId(), product.getName(), product.getPrice());
+		return new ProductDTO();
 	}
 }

@@ -1,4 +1,4 @@
-package com.challenge.orderManager.interactions.product;
+package com.challenge.orderManager.interactions;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

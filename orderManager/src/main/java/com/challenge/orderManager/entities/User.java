@@ -35,11 +35,17 @@ public class User {
 	@Id
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	private String userId;
+	private String id;
 
 	@NotNull
 	private String name;
 
 	@NotNull
 	private String type;
+	
+	@NotNull
+	private String email;
+	
+	@NotNull
+	private String password;
 }

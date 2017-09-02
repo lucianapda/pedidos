@@ -10,6 +10,11 @@ import com.challenge.orderManager.entities.Product;
 import com.challenge.orderManager.entities.QProduct;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 
+/**
+ * Classe que implementa querys elaboradas
+ * @author Adailton Hafemann
+ *
+ */
 public class ProductRepositoryImpl implements ProductRepositoryQueries {
 
 	private static final QProduct PRODUCT = QProduct.product;	
