@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.GenericGenerator;
 
@@ -29,6 +30,7 @@ public class Product {
 	private String id;
 
 	@NotNull
+	@Size(max = 50)
 	private String name;
 
 	@NotNull

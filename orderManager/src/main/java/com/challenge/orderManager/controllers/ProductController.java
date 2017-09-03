@@ -40,8 +40,8 @@ public class ProductController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ProductDTO save(@RequestBody ProductDTO productDto) {
-		Product product = productAdition.save(productDto.toEntity());
+	public ProductDTO save(@RequestBody ProductDTO productDto) throws Exception {
+		Product product = productAdition.save(productDto);
 		return new ProductDTO(product);
 	}
 
@@ -51,8 +51,8 @@ public class ProductController {
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ProductDTO merge(@RequestBody ProductDTO productDto) {
-		Product product = productAdition.save(productDto.toEntity());
+	public ProductDTO merge(@RequestBody ProductDTO productDto) throws Exception {
+		Product product = productAdition.save(productDto);
 		return new ProductDTO();
 	}
 }

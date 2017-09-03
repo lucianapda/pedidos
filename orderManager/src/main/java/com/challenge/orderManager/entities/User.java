@@ -14,7 +14,9 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.GenericGenerator;
 
 import lombok.AllArgsConstructor;
@@ -38,14 +40,18 @@ public class User {
 	private String id;
 
 	@NotNull
+	@Size(max = 50)
 	private String name;
 
 	@NotNull
+	@Size(max = 50)
 	private String type;
 	
 	@NotNull
+	@Size(max = 50)
 	private String email;
 	
 	@NotNull
+	@Size(max = 50)
 	private String password;
 }
