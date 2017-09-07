@@ -19,7 +19,7 @@ import com.challenge.orderManager.repositories.ProductRepository;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "/product")
+@RequestMapping(value = "/rest/product")
 public class ProductController {
 
 	@Autowired

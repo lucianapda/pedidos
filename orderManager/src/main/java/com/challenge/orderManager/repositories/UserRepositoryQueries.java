@@ -9,4 +9,5 @@ import com.challenge.orderManager.entities.User;
 public interface UserRepositoryQueries {
 
 	List<User> getUserList();
+	User findByEmail(String email);
 }

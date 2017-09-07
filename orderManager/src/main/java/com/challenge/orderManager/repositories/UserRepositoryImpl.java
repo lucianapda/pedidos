@@ -23,4 +23,12 @@ public class UserRepositoryImpl implements UserRepositoryQueries{
 		.selectFrom( USER ).fetch();
 	}
 
+	@Override
+	public User findByEmail(String email) {
+		return new JPAQueryFactory( entityManager )
+				.selectFrom( USER )
+				.where(USER.email.eq(email))
+				.fetchFirst();
+	}
+
 }

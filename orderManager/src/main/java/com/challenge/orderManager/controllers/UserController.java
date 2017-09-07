@@ -18,7 +18,7 @@ import com.challenge.orderManager.repositories.UserRepository;
 
 @RestController
 @CrossOrigin
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/rest/user")
 public class UserController {
 
 	@Autowired
@@ -33,7 +33,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public UserListDTO list() {
+	public UserListDTO list() {		
 		return new UserListDTO(userRepository.getUserList().stream().map(UserDTO::new).collect(Collectors.toList()));
 	}
 
