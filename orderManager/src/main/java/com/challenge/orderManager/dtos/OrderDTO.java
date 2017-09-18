@@ -1,5 +1,6 @@
 package com.challenge.orderManager.dtos;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import com.challenge.orderManager.dtos.OrderItemDTO.OrderItemDTOBuilder;
@@ -23,18 +24,24 @@ public class OrderDTO {
 	private double totalOrder;
 	private int orderId;
 	private int table;
-	
-	public OrderDTO (OrderDTO order, OrderItemDTO orderItem){
+	private int amoutItem;
+	private Date orderDate;
+
+		
+	public OrderDTO (OrderDTO order, OrderItem orderItem){
 		this.orderId = order.getOrderId();
 		this.orderArray = order.getOrderArray();
 		this.table = order.getTable();
-		this.totalOrder = order.getTotalOrder();
+		this.totalOrder = orderItem.getAmount() * orderItem.getPrice();
+		this.orderDate = order.getOrderDate();
+		this.amoutItem = orderItem.getAmount();
+		
 		
 	}
 	
 	
 	public Order toEntity() {
-		return Order.builder().id(this.orderId).table(this.table).totalOrder(this.totalOrder).build();
+		return Order.builder().id(this.orderId).table(this.table).totalOrder(this.totalOrder).orderDate(this.orderDate).build();
 	}
 
 }

@@ -23,7 +23,7 @@ public class ProductRepositoryImpl implements ProductRepositoryQueries {
 	private EntityManager entityManager;
 	
 	@Override
-	public Product getProduct(String productId) {
+	public Product getProduct(int productId) {
 		return new JPAQueryFactory( entityManager )
 				.selectFrom( PRODUCT )
 				.where(PRODUCT.id.eq(productId))

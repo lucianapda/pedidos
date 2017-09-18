@@ -15,21 +15,26 @@ import lombok.NoArgsConstructor;
 public class OrderItemDTO {
 
 	
-     	private Product product;
+     	
+     	private int productId;
 		private int amount;
-		private double price ;
+		private double price;
 		private int id;
+		private int orderId;
 		
 		
-		public OrderItemDTO(OrderItemDTO orderItem){
-			this.product = orderItem.getProduct();
+		
+		public OrderItemDTO(OrderItemDTO orderItem, OrderDTO orderId, Product product){
+			this.productId = product.getId();
 			this.id = orderItem.getId();
 			this.price = orderItem.getPrice();
 			this.amount = orderItem.getAmount();
+			this.orderId = orderId.getOrderId();
 		}
 		
+		
 		public OrderItem toEntity() {
-			return OrderItem.builder().id(this.id).product(this.product).price(this.price).amount(this.amount).build();
+			return OrderItem.builder().id(this.id).productId(this.productId).price(this.price).amount(this.amount).orderId(this.orderId).build();
 		}
 		
 		

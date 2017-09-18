@@ -29,7 +29,7 @@ public class ProductController {
 	private ProductAdition productAdition;
 
 	@RequestMapping(value = "/{productId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ProductDTO get(@PathVariable String productId) {
+	public ProductDTO get(@PathVariable int productId) {
 		Product product = productRepository.getProduct(productId);
 		return new ProductDTO(product);		
 	}

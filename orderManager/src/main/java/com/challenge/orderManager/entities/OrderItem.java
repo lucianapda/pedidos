@@ -34,7 +34,10 @@ public class OrderItem {
 	
 	@NotNull
 	private int amount;
+
+	@NotNull
+	private int orderId;
 	
 	@NotNull
-    private Product product;
+	private int productId;
 }

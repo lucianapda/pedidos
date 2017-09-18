@@ -1,5 +1,6 @@
 package com.challenge.orderManager.entities;
 
+import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.persistence.Entity;
@@ -43,6 +44,8 @@ public class Order {
 	private int table;
 	
 	@NotNull
-	private ArrayList<OrderItem> orderItem;
+	private Date orderDate;
+	
+	
 
 }
