@@ -27,7 +27,8 @@ public class OrderItem {
 	@Id
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	private int id;
+	private int productId;
+	private int orderId;
 
 	@NotNull
 	private double price;
@@ -35,9 +36,5 @@ public class OrderItem {
 	@NotNull
 	private int amount;
 
-	@NotNull
-	private int orderId;
 	
-	@NotNull
-	private int productId;
 }

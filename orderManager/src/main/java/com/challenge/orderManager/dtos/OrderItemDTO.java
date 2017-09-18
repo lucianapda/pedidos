@@ -34,7 +34,7 @@ public class OrderItemDTO {
 		
 		
 		public OrderItem toEntity() {
-			return OrderItem.builder().id(this.id).productId(this.productId).price(this.price).amount(this.amount).orderId(this.orderId).build();
+			return OrderItem.builder().productId(this.productId).price(this.price).amount(this.amount).orderId(this.orderId).build();
 		}
 		
 		
