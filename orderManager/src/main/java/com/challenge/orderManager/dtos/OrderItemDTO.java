@@ -16,20 +16,20 @@ public class OrderItemDTO {
 
 	
      	
-     	private int productId;
+     	private String productId;
 		private int amount;
 		private double price;
-		private int id;
-		private int orderId;
+		private String id;
+		private String orderId;
 		
 		
 		
-		public OrderItemDTO(OrderItemDTO orderItem, OrderDTO orderId, Product product){
-			this.productId = product.getId();
+		public OrderItemDTO(OrderItem orderItem){
+			
 			this.id = orderItem.getId();
 			this.price = orderItem.getPrice();
 			this.amount = orderItem.getAmount();
-			this.orderId = orderId.getOrderId();
+			
 		}
 		
 		

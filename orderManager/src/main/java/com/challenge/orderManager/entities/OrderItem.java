@@ -23,18 +23,21 @@ import lombok.Setter;
 @NoArgsConstructor
 @Table(name = "order_item")
 public class OrderItem {
-
+  
 	@Id
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	private int productId;
-	private int orderId;
-
+	private String productId;
+	private String orderId;
+    private String id;
 	@NotNull
 	private double price;
 	
 	@NotNull
 	private int amount;
+	
+	
+
 
 	
 }
