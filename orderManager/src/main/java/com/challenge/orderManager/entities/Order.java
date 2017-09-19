@@ -32,10 +32,7 @@ public class Order {
 	@Id
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
-	private int id;
-
-	@NotNull
-	private int orderId ;
+	private String id;
 
 	@NotNull
 	private double totalOrder;

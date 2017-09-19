@@ -19,7 +19,7 @@ public class OrderRepositoryImpl implements OrderRepositoryQueries {
 	private EntityManager entityManager;
 	
 	@Override
-	public Order getOrder(int orderId) {
+	public Order getOrder(String orderId) {
 		return new JPAQueryFactory( entityManager )
 				.selectFrom( ORDER )
 				.where(ORDER.id.eq(orderId))

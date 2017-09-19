@@ -25,11 +25,11 @@ public class OrderItemDTO {
 		
 		
 		public OrderItemDTO(OrderItem orderItem){
-			
+			this.productId = orderItem.getProductId();
 			this.id = orderItem.getId();
 			this.price = orderItem.getPrice();
 			this.amount = orderItem.getAmount();
-			
+			this.orderId = orderItem.getOrderId();
 		}
 		
 		

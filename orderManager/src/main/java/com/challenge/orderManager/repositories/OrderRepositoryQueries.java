@@ -5,6 +5,6 @@ import java.util.List;
 import com.challenge.orderManager.entities.Order;
 
 public interface OrderRepositoryQueries {
-	Order getOrder(int orderId);
+	Order getOrder(String orderId);
 	List<Order> getOrderList();
 }

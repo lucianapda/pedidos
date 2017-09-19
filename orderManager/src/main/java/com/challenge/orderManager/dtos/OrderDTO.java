@@ -22,9 +22,9 @@ public class OrderDTO {
 	
 	private ArrayList<OrderItemDTO> orderArray = new ArrayList();
 	private double totalOrder;
-	private int orderId;
+	private String orderId;
 	private int table;
-	private int amoutItem;
+	private double amoutItem;
 	private Date orderDate;
 
 		
@@ -38,6 +38,18 @@ public class OrderDTO {
 		
 		
 	}
+	
+	public OrderDTO (Order order){
+		this.orderId = order.getId();
+		this.amoutItem = getTotalOrder();
+		this.table = order.getTable();
+		
+		this.orderDate = order.getOrderDate();
+		
+		
+		
+	}
+	
 	
 	
 	public Order toEntity() {
