@@ -1,5 +1,8 @@
 package com.challenge.orderManager.controllers;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +18,19 @@ import com.challenge.orderManager.dtos.OrderDTO;
 import com.challenge.orderManager.dtos.OrderItemDTO;
 import com.challenge.orderManager.dtos.OrderItemListDTO;
 import com.challenge.orderManager.dtos.OrderListDTO;
+import com.challenge.orderManager.dtos.PedidoDTO;
+import com.challenge.orderManager.dtos.PedidoProdutoDTO;
+import com.challenge.orderManager.dtos.ProductDTO;
 import com.challenge.orderManager.entities.Order;
 import com.challenge.orderManager.entities.OrderItem;
+import com.challenge.orderManager.entities.Pedido;
+import com.challenge.orderManager.entities.PedidoProduto;
+import com.challenge.orderManager.entities.Product;
 import com.challenge.orderManager.interactions.OrderAdition;
 import com.challenge.orderManager.interactions.OrderItemAdition;
 import com.challenge.orderManager.repositories.OrderItemRepository;
 import com.challenge.orderManager.repositories.OrderRepository;
+import com.challenge.orderManager.repositories.PedidoRepository;
 
 @RestController
 @CrossOrigin
@@ -33,10 +43,12 @@ public class OrderController {
 	@Autowired
 	private OrderAdition orderAdition;
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public OrderDTO get(@PathVariable String orderId) {
-		Order order = orderRepository.getOrder(orderId);
-		return new OrderDTO(order);		
+	@Autowired
+	private OrderItemAdition pedidoProdutoRepos;		
+	
+	@RequestMapping(value = "/{orderId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public OrderDTO get(@PathVariable long orderId) {
+		return orderAdition.getOrderId(orderId);
 	}
 	
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -45,9 +57,10 @@ public class OrderController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public OrderDTO save(@RequestBody OrderDTO orderDto) throws Exception {
-		Order order = orderAdition.save(orderDto);
-		return new OrderDTO(order);
+	public PedidoDTO save(@RequestBody PedidoDTO pedidoDTO) throws Exception {
+		Pedido pedido = pedidoProdutoRepos.salva(pedidoDTO); 
+//				pedidoRepository.save(convertDTOToEntity(pedidoDTO));
+		return new PedidoDTO(pedido);
 	}
 
 	@RequestMapping(value = "/orderId}", method = RequestMethod.DELETE)
@@ -61,5 +74,26 @@ public class OrderController {
 		return new OrderDTO();
 	}
 	
+	
+//	public Pedido convertDTOToEntity(PedidoDTO pedido) {
+//		Pedido entity = new Pedido();
+//		List<PedidoProduto> pedidoProduto = new ArrayList();
+//		for (PedidoProdutoDTO dto : pedido.getOrderArray()) {
+//			PedidoProduto pp = new PedidoProduto();
+//			pp.setId(dto.getId());
+//			pp.setProduto(convertProduct(dto.getProduto()));
+//			pp.setQuantidade(2D);			
+//		}
+//		entity.setProducts(pedidoProduto);
+//		return entity;
+//	}
+//	
+//	public Product convertProduct(ProductDTO produto) {
+//		Product pro = new Product();
+//		pro.setName(produto.getName());
+//		pro.setPrice(produto.getPrice());
+//		pro.setProduct_id(produto.getId());
+//		return pro;
+//	}
 	
 }

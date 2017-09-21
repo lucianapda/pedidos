@@ -1,5 +1,6 @@
 package com.challenge.orderManager.controllers;
 
+import java.math.BigInteger;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class ProductController {
 	private ProductAdition productAdition;
 
 	@RequestMapping(value = "/{productId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ProductDTO get(@PathVariable int productId) {
+	public ProductDTO get(@PathVariable long productId) {
 		Product product = productRepository.getProduct(productId);
 		return new ProductDTO(product);		
 	}

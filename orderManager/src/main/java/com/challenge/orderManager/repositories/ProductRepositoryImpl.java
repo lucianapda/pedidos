@@ -1,5 +1,6 @@
 package com.challenge.orderManager.repositories;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -23,10 +24,10 @@ public class ProductRepositoryImpl implements ProductRepositoryQueries {
 	private EntityManager entityManager;
 	
 	@Override
-	public Product getProduct(int productId) {
+	public Product getProduct(long productId) {
 		return new JPAQueryFactory( entityManager )
 				.selectFrom( PRODUCT )
-				.where(PRODUCT.id.eq(productId))
+				.where(PRODUCT.product_id.eq(productId))
 				.fetchFirst();				
 	}
 

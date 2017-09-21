@@ -1,5 +1,6 @@
 package com.challenge.orderManager.repositories;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -22,17 +23,19 @@ public class OrderItemRepositoryImpl implements OrderItemRepositoryQueries {
 	private EntityManager entityManager;
 	
 	@Override
-	public OrderItem getOrderItem(String orderItemId) {
+	public OrderItem getOrderItem(long orderItemId) {
 		return new JPAQueryFactory( entityManager )
 				.selectFrom( ORDERITEM )
 				.where(ORDERITEM.id.eq(orderItemId))
-				.fetchFirst();	
+				.fetchFirst();
 	}
 
 	@Override
-	public List<OrderItem> getOrderItemList() {
+	public List<OrderItem> getOrderItemList(long orderId) {
 		return new JPAQueryFactory( entityManager )
-				.selectFrom(ORDERITEM ).fetch();
+				.selectFrom(ORDERITEM )
+				.where(ORDERITEM.orderx.order_id.eq(orderId))
+				.fetch();
 	}
 
 

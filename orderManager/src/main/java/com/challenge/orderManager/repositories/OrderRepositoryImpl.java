@@ -1,5 +1,6 @@
 package com.challenge.orderManager.repositories;
 
+import java.math.BigInteger;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -19,11 +20,11 @@ public class OrderRepositoryImpl implements OrderRepositoryQueries {
 	private EntityManager entityManager;
 	
 	@Override
-	public Order getOrder(String orderId) {
+	public Order getOrder(long orderId) {
 		return new JPAQueryFactory( entityManager )
 				.selectFrom( ORDER )
-				.where(ORDER.id.eq(orderId))
-				.fetchFirst();		
+				.where(ORDER.order_id.eq(orderId))
+				.fetchFirst();	
 	}
 
 	@Override

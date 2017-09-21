@@ -1,7 +1,6 @@
 package com.challenge.orderManager.entities;
 
 import java.math.BigInteger;
-import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,9 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-import com.challenge.orderManager.entities.User.UserBuilder;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,26 +25,14 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "orderx")
-public class Order {
-	
+@Table(name = "pedidos")
+public class Pedido {
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "order_id", nullable = false, unique = true)
-    private long order_id;
+    @Column(name = "id", nullable = false, unique = true)
+    private long id;		
 
-	@NotNull
-	private double totalOrder;
-	
-	@NotNull
-	private int tablex;
-	
-	@NotNull
-	private Date orderDate;
-	
-	@NotNull
-	private boolean paid_account;
-	
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "orderx", cascade = CascadeType.ALL, targetEntity = OrderItem.class)
-    private List<OrderItem> products;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pedido", cascade = CascadeType.ALL)
+    private List<PedidoProduto> products;
 }

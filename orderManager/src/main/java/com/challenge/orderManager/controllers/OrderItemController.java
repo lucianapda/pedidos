@@ -27,39 +27,39 @@ import com.challenge.orderManager.repositories.ProductRepository;
 @RequestMapping(value = "/rest/orderItem")
 public class OrderItemController {
 
-	@Autowired
-	private OrderItemRepository orderItemRepository;
-	
-
-	@Autowired
-	private OrderItemAdition orderItemAdition;
-	
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public OrderItemDTO get(@PathVariable String orderItemId) {
-		OrderItem orderItem = orderItemRepository.getOrderItem(orderItemId);
-		return new OrderItemDTO(orderItem);		
-	}
-	
-	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public OrderItemListDTO list() {
-		return new OrderItemListDTO(orderItemRepository.getOrderItemList().stream().map( OrderItemDTO::new).collect( Collectors.toList() ));			
-	}
-
-	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public OrderItemDTO save(@RequestBody OrderItemDTO orderItemDto) throws Exception {
-		OrderItem orderItem = orderItemAdition.save(orderItemDto);
-		return new OrderItemDTO(orderItem);
-	}
-
-	@RequestMapping(value = "/orderItemId}", method = RequestMethod.DELETE)
-	public void delete(@PathVariable String orderItem) {
-		orderItemRepository.delete( orderItem );
-	}
-	
-	@RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public OrderItemDTO merge(@RequestBody OrderItemDTO orderItemDto) throws Exception {
-		OrderItem orderItem = orderItemAdition.save(orderItemDto);
-		return new OrderItemDTO();
-	}
+//	@Autowired
+//	private OrderItemRepository orderItemRepository;
+//	
+//
+//	@Autowired
+//	private OrderItemAdition orderItemAdition;
+//	
+//	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public OrderItemDTO get(@PathVariable String orderItemId) {
+//		OrderItem orderItem = orderItemRepository.getOrderItem(orderItemId);
+//		return new OrderItemDTO(orderItem);		
+//	}
+//	
+//	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public OrderItemListDTO list() {
+//		return new OrderItemListDTO(orderItemRepository.getOrderItemList().stream().map( OrderItemDTO::new).collect( Collectors.toList() ));			
+//	}
+//
+//	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public OrderItemDTO save(@RequestBody OrderItemDTO orderItemDto) throws Exception {
+//		OrderItem orderItem = orderItemAdition.save(orderItemDto);
+//		return new OrderItemDTO(orderItem);
+//	}
+//
+//	@RequestMapping(value = "/orderItemId}", method = RequestMethod.DELETE)
+//	public void delete(@PathVariable String orderItem) {
+//		orderItemRepository.delete( orderItem );
+//	}
+//	
+//	@RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+//	public OrderItemDTO merge(@RequestBody OrderItemDTO orderItemDto) throws Exception {
+//		OrderItem orderItem = orderItemAdition.save(orderItemDto);
+//		return new OrderItemDTO();
+//	}
 	
 }
