@@ -1,8 +1,74 @@
 <div class="panel panel-default">
   <div class="panel-heading">
-    <h3 class="panel-title">usuario</h3>
+    <h3 class="panel-title">Cadastro de usuário</h3>
   </div>
   <div class="panel-body">
-    colocar aqui a tela de cadastro do usuario
+    <form novalidate #formUsuario="ngForm" (ngSubmit)="salvar()">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Nome</label>
+            <label class="required">*</label>
+            <input class="form-control" [ngClass]="{ 'input-invalid' : nome.invalid && (nome.dirty || nome.touched)}"
+                   id="nome" #nome="ngModel" name="nome" [(ngModel)]="usuario.nome" type="text" maxlength="50"
+                   minlength="3" required/>
+            <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="required">
+              <span *ngIf="nome.errors.required">Campo obrigatorio</span>
+              <span *ngIf="nome.errors.maxlength">Campo deve conter no maximo 50 caracteres</span>
+              <span *ngIf="nome.errors.minlength">Campo deve conter no minimo 3 caracteres</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label>Tipo de usuário</label>
+          <label class="required">*</label>
+          <select class="form-control" [(ngModel)]="usuario.tipo" name="tipo" #tipo="ngModel" [ngClass]="{ 'input-invalid' : tipo.invalid && (tipo.dirty || tipo.touched)}" required>
+            <option *ngFor="let tipo of listaTipoUsuario" [ngValue]="tipo.nome">{{tipo.nome}}</option>
+          </select>
+          <div *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)" class="required">
+            <span *ngIf="tipo.errors.required">Campo obrigatorio</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>E-mail</label>
+            <label class="required">*</label>
+            <input class="form-control" pattern=".+@.+.com" placeholder="exemplo@exemplo.com"
+                   [ngClass]="{ 'input-invalid' : email.invalid && (email.dirty || email.touched)}" id="email"
+                   #email="ngModel" name="email" [(ngModel)]="usuario.email" type="email" maxlength="50" minlength="3"
+                   required/>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)" class="required">
+              <span *ngIf="email.errors.required">Campo obrigatorio</span>
+              <span *ngIf="email.errors.maxlength">Campo deve conter no maximo 50 caracteres</span>
+              <span *ngIf="email.errors.minlength">Campo deve conter no minimo 3 caracteres</span>
+              <span *ngIf="email.errors.pattern">E-mail invalido</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label>Senha</label>
+          <label class="required">*</label>
+          <input class="form-control"
+                 [ngClass]="{ 'input-invalid' : password.invalid && (password.dirty || password.touched)}" id="password"
+                 #password="ngModel" name="password" [(ngModel)]="usuario.senha" type="password" maxlength="50"
+                 minlength="3" required/>
+          <div *ngIf="password.invalid && (password.dirty || password.touched)" class="required">
+            <span *ngIf="password.errors.required">Campo obrigatorio</span>
+            <span *ngIf="password.errors.maxlength">Campo deve conter no maximo 50 caracteres</span>
+            <span *ngIf="password.errors.minlength">Campo deve conter no minimo 3 caracteres</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card-button">
+            <button class="btn btn-default">Cancelar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="formUsuario.invalid">Salvar</button>
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
 </div>

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -10,6 +10,7 @@ import { CaixaComponent } from './caixa/caixa.component';
 import { PedidoComponent } from './pedido/pedido.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { LoginComponent } from './login/login.component';
+import { ProdutoComponent } from './produto/produto.component';
 
 @NgModule({
   declarations: [
@@ -18,12 +19,15 @@ import { LoginComponent } from './login/login.component';
     CaixaComponent,
     PedidoComponent,
     UsuarioComponent,
-    LoginComponent    
+    LoginComponent,
+    ProdutoComponent    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
