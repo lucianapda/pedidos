@@ -1,0 +1,21 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+
+.required {
+  color: red;
+}
+
+.input-invalid {
+  border-color: red;
+}
+
+.card-button{
+  text-align: right;
+  padding-top: 10px;
+}
+
+.card-login{
+  background-color: white;
+  margin-top: 20vh;
+  padding: 50px 50px 40px 50px;
+  border-radius: 20px;
+}

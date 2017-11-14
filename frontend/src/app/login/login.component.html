@@ -1,3 +1,25 @@
-<p>
-  login works!
-</p>
+<div class="page-container">
+  <div class="page-content-wrapper">
+    <form novalidate #formLogin="ngForm" (ngSubmit)="entrar()">
+      <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-2"></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-2">
+          <div class="card-login">
+            <div class="form-group">
+              <label>Usuario</label>
+              <input class="form-control" type="text" type="email" [(ngModel)]="login.email" name="email" #email="ngModel" required/>
+            </div>
+            <div class="form-group">
+              <label>Senha</label>
+              <input class="form-control" type="password" [(ngModel)]="login.senha" name="password" #password="ngModel" required/>
+            </div>
+            <div class="card-button">
+              <button type="submit" class="btn btn-primary" [disabled]="formLogin.invalid">Entrar</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-2"></div>
+      </div>
+    </form>
+  </div>
+</div>

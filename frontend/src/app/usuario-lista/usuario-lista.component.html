@@ -1,0 +1,46 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <button class="btn btn-primary" routerLink="/usuario">Adicionar</button>
+  </div>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Lista de usuário</h3>
+  </div>
+  <div class="panel-body">
+    <form>
+      <div class="row">
+        <div class="card-produto-lista">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>
+                Nome
+              </th>
+              <th>
+                E-mail
+              </th>
+              <th>
+                Tipo usuário
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let usuario of usuarioLista">
+              <td>
+                {{usuario.nome}}
+              </td>
+              <td>
+                {{usuario.email}}
+              </td>
+              <td>
+                {{usuario.tipo}}
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

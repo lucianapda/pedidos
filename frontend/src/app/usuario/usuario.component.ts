@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewContainerRef } from '@angular/core';
 import {Usuario} from "./Usuario"
 import {TipoUsuario} from "./TipoUsuario";
+import {ToastsManager} from "ng2-toastr/ng2-toastr";
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-usuario',
@@ -10,22 +12,33 @@ import {TipoUsuario} from "./TipoUsuario";
 })
 export class UsuarioComponent implements OnInit {
 
-  public usuario: Usuario = null;
+  public usuario: Usuario = new Usuario("","","","");
   public listaTipoUsuario: Array<TipoUsuario> = [];
 
-  constructor() {
-    this.usuario = new Usuario("","","","");
+  constructor(public toast: ToastsManager, public vcr:ViewContainerRef, public location: Location) {
+    this.toast.setRootViewContainerRef(vcr);
   }
 
   ngOnInit() {
-    this.listaTipoUsuario.push(new TipoUsuario("ADMIN", "Administrador"))
-    this.listaTipoUsuario.push(new TipoUsuario("CAIXA", "Caixa"))
-    this.listaTipoUsuario.push(new TipoUsuario("ATENDENTE", "Atendente"))
-    this.listaTipoUsuario.push(new TipoUsuario("COZINHA", "Cozinheiro"))
+    this.listaTipoUsuario.push(new TipoUsuario("ADMIN", "Administrador"));
+    this.listaTipoUsuario.push(new TipoUsuario("CAIXA", "Caixa"));
+    this.listaTipoUsuario.push(new TipoUsuario("ATENDENTE", "Atendente"));
+    this.listaTipoUsuario.push(new TipoUsuario("COZINHA", "Cozinheiro"));
   }
   
   salvar(){
-    console.log(this.usuario);
+    let usuarioLista: Array<Usuario> = [];
+    if (localStorage.getItem('usuario')){
+      usuarioLista = JSON.parse(localStorage.getItem('usuario'));
+    }
+    usuarioLista.push(this.usuario);
+    console.log(usuarioLista);
+    localStorage.setItem('usuario', JSON.stringify(usuarioLista));
+    this.toast.success("Sucesso", "O produto foi cadastrado");
+  }
+
+  cancelar(){
+    this.location.back();
   }
 
 }
