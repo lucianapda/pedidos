@@ -1,7 +1,5 @@
 
-import {Produto} from '../produto/Produto'
-import {ToastsManager} from "ng2-toastr/ng2-toastr";
-import { Component, OnInit, ViewEncapsulation, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-pedido',
@@ -10,6 +8,11 @@ import { Component, OnInit, ViewEncapsulation, ViewContainerRef } from '@angular
   encapsulation: ViewEncapsulation.None
   
 })
-export class PedidoComponent implements OnInit {
 
-}
+export class PedidoComponent implements OnInit {
+    constructor() { }
+  
+    ngOnInit() {
+    }
+  
+  }

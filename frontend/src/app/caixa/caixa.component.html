@@ -3,6 +3,57 @@
     <h3 class="panel-title">Caixa</h3>
   </div>
   <div class="panel-body">
-    colocar aqui a tela do caixa
+    <div class="row">
+      <form class="from-group">
+        <div class="col-md-7">
+          <div class="form-group">
+            <label>Mesa</label>
+            <label class="required">*</label>
+            <input class="form-control" required/>
+          </div>
+
+        </div>
+        <div class="col-md-1">
+          <button class="btn btn-default">Buscar
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+        <div class="col-md-4">
+          Nº Pedido: 
+        </div>
+      </form>
+
+    </div>
+    <div class="panel panel-default"></div>
+    <div class="row">
+      <div class="card-produto-lista">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>
+                Produto
+              </th>
+              <th>
+                Quantidade
+              </th>
+              <th>
+                Valor
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let produto of produtoLista">
+              <td>
+                {{produto.nome}}
+              </td>
+              <td>
+                {{produto.preco}}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
   </div>
 </div>
