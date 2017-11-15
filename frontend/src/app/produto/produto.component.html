@@ -4,14 +4,14 @@
   </div>
   <div class="panel-body">
     <form novalidate #formProduto="ngForm" (ngSubmit)="salvar()">
+
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
           <div class="form-group">
             <label>Nome</label>
             <label class="required">*</label>
-            <input class="form-control" [ngClass]="{ 'input-invalid' : nome.invalid && (nome.dirty || nome.touched)}"
-                   id="nome" #nome="ngModel" name="nome" [(ngModel)]="produto.nome" type="text" maxlength="50"
-                   minlength="3" required/>
+            <input class="form-control" [ngClass]="{ 'input-invalid' : nome.invalid && (nome.dirty || nome.touched)}" id="nome" #nome="ngModel"
+              name="nome" [(ngModel)]="produto.nome" type="text" maxlength="50" minlength="3" required/>
             <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="required">
               <span *ngIf="nome.errors.required">Campo obrigatorio</span>
               <span *ngIf="nome.errors.maxlength">Campo deve conter no maximo 50 caracteres</span>
@@ -19,21 +19,28 @@
             </div>
           </div>
         </div>
-        <div class="col-md-6">
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
           <label>Preço</label>
           <label class="required">*</label>
           <input class="form-control" [ngClass]="{ 'input-invalid' : verificaErro(preco) || verificaNumeroMaiorPermitido() || verificaNumeroMenorPermitido()}"
-                 id="preco" #preco="ngModel" name="preco" [(ngModel)]="produto.preco" type="number" min="0" min="{{minNumero}}" max="{{maxNumero}}" required/>
-            <span class="required" *ngIf="verificaErro(preco)">Campo obrigatorio</span>
-            <span class="required" *ngIf="verificaNumeroMaiorPermitido()">O valor do produto não pode ser maior que 1000 reais</span>
-            <span class="required" *ngIf="verificaNumeroMenorPermitido()">O valor do produto não pode ser menor que 0 reais</span>
+            id="preco" #preco="ngModel" name="preco" [(ngModel)]="produto.preco" type="number" min="0" min="{{minNumero}}"
+            max="{{maxNumero}}" required style="direction: rtl;" />
+          <span class="required" *ngIf="verificaErro(preco)">Campo obrigatorio</span>
+          <span class="required" *ngIf="verificaNumeroMaiorPermitido()">O valor do produto não pode ser maior que 1000 reais</span>
+          <span class="required" *ngIf="verificaNumeroMenorPermitido()">O valor do produto não pode ser menor que 0 reais</span>
         </div>
       </div>
       <div class="row">
         <div class="col-md-12">
           <div class="card-button">
             <button class="btn btn-default" (click)="cancelar()">Cancelar</button>
-            <button type="submit" class="btn btn-primary" [disabled]="eValidoFormulario(formProduto)">Salvar</button>
+            <button type="submit" class="btn btn-primary" [disabled]="eValidoFormulario(formProduto)">Salvar
+              <i class="glyphicon glyphicon-floppy-save"></i>
+            </button>
           </div>
         </div>
       </div>

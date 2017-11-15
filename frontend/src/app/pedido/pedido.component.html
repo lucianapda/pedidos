@@ -3,6 +3,52 @@
     <h3 class="panel-title">Pedido</h3>
   </div>
   <div class="panel-body">
-    colocar aqui a tela do pedido
+    <div class="row">
+      <div class="col-md-12">
+        <div class="form-group">
+          <label>Mesa</label>
+          <label class="required">*</label>
+          <input class="form-control" required/>
+
+
+
+        </div>
+      </div>
+    
+      <form class="from-group">
+          
+        <div class="col-md-3">
+          <div class="form-group">
+            <label>Produto</label>
+            <label class="required">*</label>
+            <input class="form-control" required/>
+
+          </div>
+
+        </div>
+        <div class="col-md-1">
+          <button class="btn btn-default">Buscar
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+
+        </div>
+        <div class="col-md-12">
+          <label>Quantidade</label>
+          <label class="required">*</label>
+          <input class="form-control" required style="direction: rtl;" />
+          <div class="text-right">
+              <button type="submit" class="btn btn-primary" [disabled]="eValidoFormulario(formProduto)">Incluir
+                  <i class="glyphicon glyphicon-floppy-save"></i>
+                </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="panel-heading">
+      <h3 class="panel-title">Lista de produtos</h3>
+    </div>
+  <div class="panel-body">
+  Aqui vai a lista
   </div>
 </div>
