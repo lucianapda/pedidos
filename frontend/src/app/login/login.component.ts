@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import {Login} from './Login';
 
 @Component({
@@ -11,13 +12,17 @@ export class LoginComponent implements OnInit {
   
   public login: Login = new Login("","");
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
   
-  entrar(){
-    console.log(this.login);
+  entrar(){    
+    this.http.post('http://localhost:8080/login', this.login)
+    .subscribe(response => {
+      console.log(response);
+      localStorage.setItem('token', response.token);
+    });
   }
 
 }

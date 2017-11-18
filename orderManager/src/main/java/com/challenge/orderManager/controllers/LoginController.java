@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.challenge.orderManager.dtos.LoginDTO;
 import com.challenge.orderManager.dtos.UserDTO;
 import com.challenge.orderManager.dtos.UserListDTO;
+import com.challenge.orderManager.dtos.tokenDTO;
 import com.challenge.orderManager.entities.User;
 import com.challenge.orderManager.interactions.UserAdition;
 import com.challenge.orderManager.repositories.UserRepository;
@@ -33,7 +34,7 @@ public class LoginController {
 	private UserRepository userRepository;
 
 	@RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-	public String login(@RequestBody LoginDTO login) throws Exception {
+	public tokenDTO login(@RequestBody LoginDTO login) throws Exception {
 		String jwtToken = "";
 
 		if (login.getEmail() == null || login.getPassword() == null) {
@@ -58,6 +59,6 @@ public class LoginController {
 		jwtToken = Jwts.builder().setSubject(email).claim("roles", "user").setIssuedAt(new Date())
 				.signWith(SignatureAlgorithm.HS256, "secretkey").compact();
 
-		return jwtToken;
+		return new tokenDTO(jwtToken);
 	}
 }

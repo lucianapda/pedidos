@@ -3,6 +3,7 @@ import {Usuario} from "./Usuario"
 import {TipoUsuario} from "./TipoUsuario";
 import {ToastsManager} from "ng2-toastr/ng2-toastr";
 import { Location } from '@angular/common';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-usuario',
@@ -15,7 +16,7 @@ export class UsuarioComponent implements OnInit {
   public usuario: Usuario = new Usuario("","","","");
   public listaTipoUsuario: Array<TipoUsuario> = [];
 
-  constructor(public toast: ToastsManager, public vcr:ViewContainerRef, public location: Location) {
+  constructor(public toast: ToastsManager, public vcr:ViewContainerRef, public location: Location, private http: HttpClient) {
     this.toast.setRootViewContainerRef(vcr);
   }
 
@@ -26,15 +27,15 @@ export class UsuarioComponent implements OnInit {
     this.listaTipoUsuario.push(new TipoUsuario("COZINHA", "Cozinheiro"));
   }
   
-  salvar(){
-    let usuarioLista: Array<Usuario> = [];
-    if (localStorage.getItem('usuario')){
-      usuarioLista = JSON.parse(localStorage.getItem('usuario'));
-    }
-    usuarioLista.push(this.usuario);
-    console.log(usuarioLista);
-    localStorage.setItem('usuario', JSON.stringify(usuarioLista));
-    this.toast.success("Sucesso", "O produto foi cadastrado");
+  salvar(){    
+    this.http
+    .post('http://localhost:8080/rest/user', this.usuario, {
+      headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
+    })
+    .subscribe((response) =>{
+      console.log(response);
+      this.toast.success("Sucesso", "O produto foi cadastrado");
+    });
   }
 
   cancelar(){

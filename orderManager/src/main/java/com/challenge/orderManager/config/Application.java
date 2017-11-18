@@ -39,7 +39,7 @@ public class Application extends SpringBootServletInitializer {
 	public FilterRegistrationBean jwtFilter() {
 		final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
 		registrationBean.setFilter(new JwtFilter());
-		registrationBean.addUrlPatterns("/rest/*");
+		registrationBean.addUrlPatterns("/rest/*");		
 
 		return registrationBean;
 	}
