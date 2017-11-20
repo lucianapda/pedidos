@@ -37,6 +37,7 @@ public class OrderItemAdition {
 	public Pedido salva(PedidoDTO pedidoDTO) {
 		Pedido persist = new Pedido();
 		persist.setId(0);
+		persist.setMesa(pedidoDTO.getMesa());
 		persist = pedidoRepository.save(persist);
 		return convertDTOToEntity(pedidoDTO, persist);		
 	}
@@ -69,8 +70,7 @@ public class OrderItemAdition {
 			PedidoProduto pp = new PedidoProduto();
 			pp.setId(dto.getId());
 			pp.setProduto(productRepository.getProduct(dto.getProduto().getId()));
-			pp.setProduto(convertProduct(dto.getProduto()));
-			pp.setQuantidade(2D);
+			pp.setQuantidade(dto.getQuantidade());
 			pp.setPedido(persist);
 			listaIds.add(pedidoProdutoRepository.save(pp).getId());
 		}

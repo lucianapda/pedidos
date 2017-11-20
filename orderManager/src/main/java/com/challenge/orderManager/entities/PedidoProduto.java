@@ -37,7 +37,7 @@ public class PedidoProduto {
     private Pedido pedido;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "papel_id")
+    @JoinColumn(name = "product_id")
     private Product produto;
     
     private Double quantidade;

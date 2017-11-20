@@ -18,9 +18,11 @@ public class PedidoProdutoDTO {
 
 	private long id;
 	private ProductDTO produto;
+	private double quantidade;
 	
 	public PedidoProdutoDTO(PedidoProduto entity) {
 		this.id = entity.getId();
 		this.produto = new ProductDTO(entity.getProduto());
+		this.quantidade = entity.getQuantidade();
 	}
 }

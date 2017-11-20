@@ -19,10 +19,12 @@ import lombok.NoArgsConstructor;
 public class PedidoDTO {
 
 	private List<PedidoProdutoDTO> orderArray = new ArrayList();	
-	private long orderId;	
+	private long orderId;
+	private int mesa;
 	
 	public PedidoDTO(Pedido pedido) {
 		this.orderId = pedido.getId();
+		this.mesa = pedido.getMesa();
 		List<PedidoProdutoDTO> dto = new ArrayList();
 		if (pedido.getProducts() != null) {
 			for (PedidoProduto entity : pedido.getProducts()) {
