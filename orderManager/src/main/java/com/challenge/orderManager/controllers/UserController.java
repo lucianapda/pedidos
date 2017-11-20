@@ -33,7 +33,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public UserListDTO list() {		
+	public UserListDTO list() {
 		return new UserListDTO(userRepository.getUserList().stream().map(UserDTO::new).collect(Collectors.toList()));
 	}
 
@@ -48,7 +48,7 @@ public class UserController {
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-	public UserDTO merge(@RequestBody UserDTO userDTO) throws Exception{
+	public UserDTO merge(@RequestBody UserDTO userDTO) throws Exception {
 		return new UserDTO(userAdition.save(userDTO));
 	}
 }

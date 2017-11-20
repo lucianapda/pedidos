@@ -10,15 +10,14 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 
 public class PedidoRepositoryQueriesImpl implements PedidoRepositoryQueries {
 
-//	private static final QPedido PEDIDO = QPedido.pedido;
 	private static final QPedido PEDIDOX = QPedido.pedido;
 
 	@Autowired
 	private EntityManager entityManager;
 
 	@Override
-	public Pedido getPedido(long pedidoId) {
-		return new JPAQueryFactory(entityManager).selectFrom(PEDIDOX).where(PEDIDOX.id.eq(pedidoId)).fetchFirst();
-	}
+	public Pedido getPedido(int mesaId) {
+		return new JPAQueryFactory(entityManager).selectFrom(PEDIDOX).where(PEDIDOX.mesa.eq(mesaId).and(PEDIDOX.pago.eq(0))).fetchFirst();
+	}		
 
 }

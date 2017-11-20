@@ -4,5 +4,5 @@ import com.challenge.orderManager.entities.Pedido;
 
 public interface PedidoRepositoryQueries {
 
-	Pedido getPedido(long pedidoId);
+	Pedido getPedido(int mesaId);	
 }

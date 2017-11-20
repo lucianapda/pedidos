@@ -34,6 +34,8 @@ public class Pedido {
     private long id;		
 	
 	private int mesa;
+	
+	private int pago;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<PedidoProduto> products;
