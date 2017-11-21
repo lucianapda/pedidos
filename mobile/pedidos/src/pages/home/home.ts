@@ -53,6 +53,13 @@ export class HomePage implements OnInit{
   salvar(){    
     this.pedidos = new Pedidos(this.produtoSelecionadoLista, this.mesa, 0);
     console.log(this.pedidos);
+    this.http
+    .post('http://localhost:8080/rest/order', this.pedidos, {
+      headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
+    })
+    .subscribe((response) =>{
+      console.log(response);      
+    });
   }
 
   adicionar(){    

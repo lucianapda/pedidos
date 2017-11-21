@@ -41,8 +41,8 @@
               <ion-card-content>
                   <ion-list>                      
                       <ion-item *ngFor="let produto of produtoSelecionadoLista; let i = index"> 
-                        <ion-label item-start>{{produto.product.name}}</ion-label>
-                        <ion-label>{{produto.product.price}} R$</ion-label>
+                        <ion-label item-start>{{produto.produto.name}}</ion-label>
+                        <ion-label>{{produto.produto.price}} R$</ion-label>
                         <ion-label>{{produto.quantidade}} R$</ion-label>                                                 
                           <button  item-end ion-button color="secondary" (click)="removeLista(i)"><ion-icon name="trash"></ion-icon></button>                        
                       </ion-item>
