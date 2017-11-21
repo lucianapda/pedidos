@@ -11,7 +11,7 @@
             <label>Nome</label>
             <label class="required">*</label>
             <input class="form-control" [ngClass]="{ 'input-invalid' : nome.invalid && (nome.dirty || nome.touched)}" id="nome" #nome="ngModel"
-              name="nome" [(ngModel)]="produto.nome" type="text" maxlength="50" minlength="3" required/>
+              name="nome" [(ngModel)]="produto.name" type="text" maxlength="50" minlength="3" required/>
             <div *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="required">
               <span *ngIf="nome.errors.required">Campo obrigatorio</span>
               <span *ngIf="nome.errors.maxlength">Campo deve conter no maximo 50 caracteres</span>
@@ -27,7 +27,7 @@
           <label>Preço</label>
           <label class="required">*</label>
           <input class="form-control" [ngClass]="{ 'input-invalid' : verificaErro(preco) || verificaNumeroMaiorPermitido() || verificaNumeroMenorPermitido()}"
-            id="preco" #preco="ngModel" name="preco" [(ngModel)]="produto.preco" type="number" min="0" min="{{minNumero}}"
+            id="preco" #preco="ngModel" name="preco" [(ngModel)]="produto.price" type="number" min="0" min="{{minNumero}}"
             max="{{maxNumero}}" required style="direction: rtl;" />
           <span class="required" *ngIf="verificaErro(preco)">Campo obrigatorio</span>
           <span class="required" *ngIf="verificaNumeroMaiorPermitido()">O valor do produto não pode ser maior que 1000 reais</span>

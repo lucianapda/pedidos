@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, ViewContainerRef } from '@angular/core';
 import {Produto} from './Produto';
 import {ToastsManager} from "ng2-toastr/ng2-toastr";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Location } from '@angular/common';
 
 @Component({
@@ -15,7 +16,7 @@ export class ProdutoComponent implements OnInit {
   public maxNumero = 1000;
   public minNumero = 0;
 
-  constructor(public toast: ToastsManager, public vcr:ViewContainerRef, public location: Location) {
+  constructor(public toast: ToastsManager, public vcr:ViewContainerRef, public location: Location, private http: HttpClient) {
     this.toast.setRootViewContainerRef(vcr);
   }
 
@@ -23,14 +24,13 @@ export class ProdutoComponent implements OnInit {
   }
 
   salvar(){
-    let produtoLista: Array<Produto> = [];
-    if (localStorage.getItem('produto')){
-      produtoLista = JSON.parse(localStorage.getItem('produto'));
-    }
-    produtoLista.push(this.produto);
-    console.log(produtoLista);
-    localStorage.setItem('produto', JSON.stringify(produtoLista));
-    this.toast.success("Sucesso", "O produto foi cadastrado");
+    this.http
+    .post('http://localhost:8080/rest/product', this.produto, {
+      headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
+    })
+    .subscribe((response) =>{      
+      this.toast.success("Sucesso", "O produto foi cadastrado");
+    });
   }
 
   cancelar(){
@@ -38,11 +38,11 @@ export class ProdutoComponent implements OnInit {
   }
 
   verificaNumeroMaiorPermitido(){
-    return this.produto.preco > this.maxNumero;
+    return this.produto.price > this.maxNumero;
   }
 
   verificaNumeroMenorPermitido(){
-    return this.produto.preco < this.minNumero;
+    return this.produto.price < this.minNumero;
   }
 
   verificaErro(componente){

@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Produto} from "../produto/Produto";
+import {ProdutoLista} from './ProdutoLista';
 
 @Component({
   selector: 'app-produto-lista',
@@ -11,11 +13,15 @@ export class ProdutoListaComponent implements OnInit {
   
   public produtoLista: Array<Produto> = [];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  ngOnInit() {
-    if (localStorage.getItem('produto')){
-      this.produtoLista = JSON.parse(localStorage.getItem('produto'));
-    }
+  ngOnInit() {    
+    this.http
+    .get('http://localhost:8080/rest/product/all', {
+      headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
+    })
+    .subscribe((response:ProdutoLista) =>{
+      this.produtoLista = response.productList;
+    });
   }
 }
