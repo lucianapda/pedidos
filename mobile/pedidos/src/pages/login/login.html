@@ -1,0 +1,19 @@
+<ion-content padding>
+  <div class="card-header-login"></div>
+  <ion-card>
+      <ion-card-content>
+        <ion-item>
+          <ion-label stacked>Username</ion-label>
+          <ion-input class="input-campo" type="text" [(ngModel)]="login.email"></ion-input>
+        </ion-item>
+      
+        <ion-item>
+          <ion-label stacked>Password</ion-label>
+          <ion-input class="input-campo" type="password" [(ngModel)]="login.password"></ion-input>
+        </ion-item>
+      </ion-card-content>
+    
+    </ion-card>
+
+    <button class="btn-entrar" ion-button color="secondary" (click)="entrar()">Entrar</button>
+</ion-content>
