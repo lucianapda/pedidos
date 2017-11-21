@@ -21,6 +21,9 @@
         <div class="col-md-4" *ngIf="pedidos">
           Nº Pedido: {{pedidos.orderId}}
         </div>
+        <div class="col-md-4" *ngIf="pedidos">
+            Total a pagar: R$ {{valorTotal}}
+          </div>
         <div class="col-md-5">
           <button class="btn btn-default" (click)="pagar()">Pagar  
           </button>
@@ -31,6 +34,9 @@
     <div class="panel panel-default"></div>
     <div class="row">
       <div class="card-produto-lista">
+          <div class="alert alert-info" role="alert" *ngIf="!pedidos">
+            <label>Não tem nenhuma mesa selecionada</label>
+          </div>
         <table class="table table-striped" *ngIf="pedidos">
           <thead>
             <tr>
@@ -54,7 +60,7 @@
                 {{produto.quantidade}}
               </td>
               <td>
-                {{produto.produto.name}}
+                {{produto.produto.price}}
               </td>
             </tr>
           </tbody>

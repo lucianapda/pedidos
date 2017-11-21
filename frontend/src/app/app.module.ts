@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { ProdutoComponent } from './produto/produto.component';
 import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
 import { UsuarioListaComponent } from './usuario-lista/usuario-lista.component';
+import { KzPaginacaoComponent} from './paginacao/paginacao';
 // import { PedidoListaComponent } from './pedido-lista/pedido-lista.component';
 
 @NgModule({
@@ -28,7 +29,8 @@ import { UsuarioListaComponent } from './usuario-lista/usuario-lista.component';
     LoginComponent,
     ProdutoComponent,
     ProdutoListaComponent,
-    UsuarioListaComponent
+    UsuarioListaComponent,
+    KzPaginacaoComponent
     // PedidoListaComponent
   ],
   imports: [

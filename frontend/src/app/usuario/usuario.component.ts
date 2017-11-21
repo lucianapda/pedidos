@@ -20,11 +20,11 @@ export class UsuarioComponent implements OnInit {
     this.toast.setRootViewContainerRef(vcr);
   }
 
-  ngOnInit() {
+  ngOnInit() {    
     this.listaTipoUsuario.push(new TipoUsuario("ADMIN", "Administrador"));
-    this.listaTipoUsuario.push(new TipoUsuario("CAIXA", "Caixa"));
-    this.listaTipoUsuario.push(new TipoUsuario("ATENDENTE", "Atendente"));
-    this.listaTipoUsuario.push(new TipoUsuario("COZINHA", "Cozinheiro"));
+    this.listaTipoUsuario.push(new TipoUsuario("WAITER", "Caixa"));
+    this.listaTipoUsuario.push(new TipoUsuario("ATTENDANT_BOX", "Atendente"));
+    this.listaTipoUsuario.push(new TipoUsuario("COOK", "Cozinheiro"));
   }
   
   salvar(){    
@@ -35,7 +35,9 @@ export class UsuarioComponent implements OnInit {
     .subscribe((response) =>{
       console.log(response);
       this.toast.success("Sucesso", "O produto foi cadastrado");
-    });
+    }, ((error)=>{
+      this.toast.error(error.error.message);
+    }));
   }
 
   cancelar(){

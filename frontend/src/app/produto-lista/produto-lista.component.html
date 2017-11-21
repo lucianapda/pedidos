@@ -33,6 +33,12 @@
             </tr>
             </tbody>
           </table>
+          <kz-paginacao 
+          [qtdPorPagina]="registroCarregado" 
+          [totalRegistros]="quatidadeRegistro"
+          [qtdAdjacentes]="3"
+          (onPaginate)="paginar($event)">
+        </kz-paginacao>
         </div>
       </div>
     </form>

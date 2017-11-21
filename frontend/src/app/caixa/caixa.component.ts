@@ -14,8 +14,9 @@ import {Pagar} from "./Pagar";
 export class CaixaComponent implements OnInit {
 
   public mesa:number;
-  public pedidos:Pedidos;
+  public pedidos:Pedidos = null;
   public pagarPedido:Pagar;
+  public valorTotal:number = 0;
 
   constructor(private http: HttpClient, public toast: ToastsManager, public vcr:ViewContainerRef, public location: Location,) { 
     this.toast.setRootViewContainerRef(vcr);
@@ -32,7 +33,11 @@ export class CaixaComponent implements OnInit {
     })
     .subscribe((response:Pedidos) =>{
       this.pedidos = response;
-      console.log(this.pedidos);
+      for (let i = 0; i < this.pedidos.orderArray.length;i++){
+        let valor = this.pedidos.orderArray[i].produto.price;
+        let quantidade = this.pedidos.orderArray[i].quantidade;
+        this.valorTotal +=  valor * quantidade; 
+      }
     });
   }
 
@@ -44,6 +49,7 @@ export class CaixaComponent implements OnInit {
     })
     .subscribe((response) =>{      
       this.toast.success("Sucesso", "O produto foi cadastrado");
+      this.pedidos = null;
     });
   }
 
