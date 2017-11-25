@@ -9,36 +9,40 @@
   </div>
   <div class="panel-body">
     <form>
-      <div class="row">  
-        <div class="alert alert-info" role="alert" *ngIf="quatidadeRegistro == 0">
-          <label>Não tem produtos cadastrados</label>
-        </div>
-        <div class="card-produto-lista" *ngIf="quatidadeRegistro != 0">
-          <table class="table table-striped">
-            <thead>
-            <tr>
-              <th>
-                Nome
-              </th>
-              <th>
-                Valor
-              </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let produto of produtoLista" routerLink="/produto/{{produto.id}}">
-              <td>
-                {{produto.name}}
-              </td>
-              <td>
-               {{produto.price | currency:'BRL':'symbol-narrow':'4.2-2'}}
-              </td>
-            </tr>
-            </tbody>
-          </table>
+      <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-info" role="alert" *ngIf="quantidadeRegistro == 0">
+                <label>Não tem produtos cadastrados</label>
+              </div>
+          </div>          
+        <div class="card-produto-lista" *ngIf="quantidadeRegistro != 0">
+          <div class="col-md-12">
+              <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th>
+                      Nome
+                    </th>
+                    <th>
+                      Valor
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr *ngFor="let produto of produtoLista" routerLink="/produto/{{produto.id}}">
+                    <td>
+                      {{produto.name}}
+                    </td>
+                    <td>
+                     {{produto.price | currency:'BRL':'symbol-narrow':'4.2-2'}}
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+          </div>        
           <kz-paginacao 
           [qtdPorPagina]="registroCarregado" 
-          [totalRegistros]="quatidadeRegistro"
+          [totalRegistros]="quantidadeRegistro"
           [qtdAdjacentes]="3"
           (onPaginate)="paginar($event)">
         </kz-paginacao>

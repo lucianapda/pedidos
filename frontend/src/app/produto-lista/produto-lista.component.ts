@@ -12,14 +12,15 @@ export class ProdutoListaComponent implements OnInit {
 
   public produtoLista: Array<Produto> = [];
   public produtoListaCarregado: Array<Produto> = [];
-  public quatidadeRegistro: number = 0;
+  public quantidadeRegistro: number = 0;
   public registroCarregado:number = 5;
   public pagina:number = 0;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.produtoLista = this.route.snapshot.data.produtoListaResolve.productList || [];
+    this.produtoListaCarregado = this.route.snapshot.data.produtoListaResolve.productList || [];
+    this.quantidadeRegistro = this.produtoListaCarregado.length;
     this.carregaUsuario();  
   }
 

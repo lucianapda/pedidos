@@ -14,7 +14,7 @@ export class UsuarioListaComponent implements OnInit {
   
   public usuarioListaCarregada: Array<Usuario> = [];
   public usuarioLista: Array<Usuario> = [];  
-  public quatidadeRegistro: number = 0;
+  public quantidadeRegistro: number = 0;
   public registroCarregado:number = 5;
   public pagina:number = 0;
 
@@ -30,7 +30,7 @@ export class UsuarioListaComponent implements OnInit {
       })
       .subscribe((response:UsuarioLista) =>{
         this.usuarioListaCarregada = response.userList;
-        this.quatidadeRegistro = this.usuarioListaCarregada.length;      
+        this.quantidadeRegistro = this.usuarioListaCarregada.length;      
         this.carregaUsuario();
       });
     }    
@@ -55,8 +55,7 @@ export class UsuarioListaComponent implements OnInit {
     }
   }
 
-  paginar($event:any){
-    console.log($event);
+  paginar($event:any){    
     this.pagina = $event - 1;
     this.carregaUsuario();
   }

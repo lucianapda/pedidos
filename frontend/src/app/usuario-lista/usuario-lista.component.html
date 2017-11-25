@@ -11,43 +11,47 @@
     <form>
       <div class="row">
         <div class="card-produto-lista">
-          <div class="alert alert-info" role="alert" *ngIf="quatidadeRegistro == 0">
-            <label>Não tem produtos cadastrados</label>
-          </div>
-          <table class="table table-striped" *ngIf="quatidadeRegistro != 0">
-            <thead>
-            <tr>
-              <th>
-                Nome
-              </th>
-              <th>
-                E-mail
-              </th>
-              <th>
-                Tipo usuário
-              </th>
-            </tr>
-            </thead>
-            <tbody>              
-                  <tr *ngFor="let usuario of usuarioLista; let i = index">              
-                    <td>
-                      {{usuario.name}}
-                    </td>
-                    <td>
-                      {{usuario.email}}
-                    </td>
-                    <td>
-                      {{buscaTipoUsuario(usuario.type)}}
-                    </td>
-                  </tr>              
-            </tbody>
-          </table>
-          <kz-paginacao 
-          [qtdPorPagina]="registroCarregado" 
-          [totalRegistros]="quatidadeRegistro"
-          [qtdAdjacentes]="3"
-          (onPaginate)="paginar($event)">
-        </kz-paginacao>
+          <div class="col-md-12">
+              <div class="alert alert-info" role="alert" *ngIf="quantidadeRegistro == 0">
+                  <label>Não tem produtos cadastrados</label>
+                </div>
+          </div>      
+          <div class="col-md-12" *ngIf="quantidadeRegistro != 0">
+              <table class="table table-striped">
+                  <thead>
+                  <tr>
+                    <th>
+                      Nome
+                    </th>
+                    <th>
+                      E-mail
+                    </th>
+                    <th>
+                      Tipo usuário
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>              
+                        <tr *ngFor="let usuario of usuarioLista; let i = index">              
+                          <td>
+                            {{usuario.name}}
+                          </td>
+                          <td>
+                            {{usuario.email}}
+                          </td>
+                          <td>
+                            {{buscaTipoUsuario(usuario.type)}}
+                          </td>
+                        </tr>              
+                  </tbody>
+                </table>
+                <kz-paginacao 
+                [qtdPorPagina]="registroCarregado" 
+                [totalRegistros]="quantidadeRegistro"
+                [qtdAdjacentes]="3"
+                (onPaginate)="paginar($event)">
+              </kz-paginacao>
+            </div>              
         </div>
       </div>
     </form>
