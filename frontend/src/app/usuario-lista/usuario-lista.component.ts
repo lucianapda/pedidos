@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 import {Usuario} from "../usuario/Usuario";
 import {UsuarioLista} from './UsuarioLista';
 import { Location } from '@angular/common';
@@ -18,21 +18,24 @@ export class UsuarioListaComponent implements OnInit {
   public registroCarregado:number = 5;
   public pagina:number = 0;
 
-  constructor(private http: HttpClient, public location: Location) { }
+  constructor(private route: ActivatedRoute, public location: Location) { }
 
   ngOnInit() {    
     if (!localStorage.getItem('token')){      
       window.location.href = '/login';
     }else{
-      this.http
-      .get('http://localhost:8080/rest/user/all', {
-        headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
-      })
-      .subscribe((response:UsuarioLista) =>{
-        this.usuarioListaCarregada = response.userList;
+      this.usuarioListaCarregada = this.route.snapshot.data.usuarioListaResolve.userList || [];
         this.quantidadeRegistro = this.usuarioListaCarregada.length;      
         this.carregaUsuario();
-      });
+      // this.http
+      // .get('http://localhost:8080/rest/user/all', {
+      //   headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
+      // })
+      // .subscribe((response:UsuarioLista) =>{
+      //   this.usuarioListaCarregada = response.userList;
+      //   this.quantidadeRegistro = this.usuarioListaCarregada.length;      
+      //   this.carregaUsuario();
+      // });
     }    
   }
 

@@ -47,6 +47,7 @@ export class ProdutoComponent implements OnInit {
           headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
         })
         .subscribe(() =>{
+          console.log("produto novo");
           this.toast.success("Sucesso", "O produto foi cadastrado");
         },((error)=>{
           this.toast.error(error.error.message);

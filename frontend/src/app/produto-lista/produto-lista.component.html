@@ -29,12 +29,15 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr *ngFor="let produto of produtoLista" routerLink="/produto/{{produto.id}}">
-                    <td>
+                  <tr *ngFor="let produto of produtoLista">
+                    <td routerLink="/produto/{{produto.id}}">
                       {{produto.name}}
                     </td>
-                    <td>
+                    <td routerLink="/produto/{{produto.id}}">
                      {{produto.price | currency:'BRL':'symbol-narrow':'4.2-2'}}
+                    </td>
+                    <td>
+                      <button class="btn btn-default" (click)="removerProduto(produto.id)"><i class="glyphicon glyphicon-trash"></i></button>
                     </td>
                   </tr>
                   </tbody>

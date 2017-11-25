@@ -3,6 +3,7 @@ package com.challenge.orderManager.controllers;
 import java.math.BigInteger;
 import java.util.stream.Collectors;
 
+import org.postgresql.util.PSQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -47,8 +48,13 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "/{productId}", method = RequestMethod.DELETE)
-	public void delete(@PathVariable String productId) {
-		productRepository.delete( productId );
+	public ProductDTO delete(@PathVariable long productId) throws Exception {		
+		try {
+			Product product = productRepository.getProduct(productId);
+			return new ProductDTO(product);
+		} catch (Exception e) {
+			throw new Exception("Não foi possivel remover o produto"); 
+		}			
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
