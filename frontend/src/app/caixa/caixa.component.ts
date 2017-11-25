@@ -9,7 +9,7 @@ import {Pagar} from "./Pagar";
   selector: 'app-caixa',
   templateUrl: './caixa.component.html',
   styleUrls: ['./caixa.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class CaixaComponent implements OnInit {
 

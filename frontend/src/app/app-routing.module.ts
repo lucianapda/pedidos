@@ -9,7 +9,8 @@ import { LoginComponent } from './login/login.component';
 import { ProdutoComponent } from './produto/produto.component';
 import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
 import { UsuarioListaComponent } from './usuario-lista/usuario-lista.component';
-// import { PedidoListaComponent } from './pedido-lista/pedido-lista.component';
+import {ProdutoListaResolve} from "./shared/service/produto/produtoLista.resolve";
+import {ProdutoResolve} from './shared/service/produto/produto.resolve';
 
 
 const routes: Routes = [
@@ -18,10 +19,13 @@ const routes: Routes = [
   { path: 'pedido', component: PedidoComponent },
   { path: 'caixa', component: CaixaComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'produtoLista', component: ProdutoListaComponent },
-  { path: 'produto', component: ProdutoComponent },
+  { path: 'produtoLista', component: ProdutoListaComponent,resolve: {
+    produtoListaResolve: ProdutoListaResolve
+  } },
+  { path: 'produto/:produtoId', component: ProdutoComponent,resolve: {
+    produtoResolve: ProdutoResolve
+  } },
   { path: 'usuarioLista', component: UsuarioListaComponent },
-  // { path: 'pedidoLista', component: PedidoListaComponent }
 ];
 
 @NgModule({

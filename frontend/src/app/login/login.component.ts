@@ -7,20 +7,20 @@ import {Token} from './Token';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class LoginComponent implements OnInit {
-  
+
   public login: Login = new Login("","");
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
-  
-  entrar(){    
+
+  entrar(){
     this.http.post('http://localhost:8080/login', this.login)
-    .subscribe((response:Token) => {      
+    .subscribe((response:Token) => {
       localStorage.setItem('token', response.token);
     });
   }

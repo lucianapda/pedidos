@@ -16,7 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { ProdutoComponent } from './produto/produto.component';
 import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
 import { UsuarioListaComponent } from './usuario-lista/usuario-lista.component';
-// import { PedidoListaComponent } from './pedido-lista/pedido-lista.component';
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -29,13 +29,13 @@ import { UsuarioListaComponent } from './usuario-lista/usuario-lista.component';
     ProdutoComponent,
     ProdutoListaComponent,
     UsuarioListaComponent
-    // PedidoListaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     FormsModule,
+    SharedModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
