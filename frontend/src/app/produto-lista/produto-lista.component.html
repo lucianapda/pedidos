@@ -31,7 +31,7 @@
                 {{produto.name}}
               </td>
               <td>
-                R$ {{produto.price}}
+               {{produto.price | currency:'BRL':'symbol-narrow':'4.2-2'}}
               </td>
             </tr>
             </tbody>

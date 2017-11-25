@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ToastModule} from "ng2-toastr/ng2-toastr";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -38,6 +39,7 @@ import {SharedModule} from "./shared/shared.module";
     SharedModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    CurrencyMaskModule,
     HttpClientModule,
     ToastModule.forRoot()
   ],

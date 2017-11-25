@@ -16,6 +16,7 @@ export class ProdutoComponent implements OnInit {
   public produto: Produto = new Produto("", 0);
   public maxNumero = 1000;
   public minNumero = 0;
+  public moneyValue: number = 0;
   private isEditMode: boolean = false;
 
   constructor(public toast: ToastsManager, public vcr:ViewContainerRef, public location: Location, private http: HttpClient, private route: ActivatedRoute) {
