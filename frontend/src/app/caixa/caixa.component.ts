@@ -38,7 +38,9 @@ export class CaixaComponent implements OnInit {
         let quantidade = this.pedidos.orderArray[i].quantidade;
         this.valorTotal +=  valor * quantidade; 
       }
-    });
+    },((error)=>{
+      this.toast.error(error.error.message);
+    }));
   }
 
   pagar(){

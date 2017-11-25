@@ -14,7 +14,7 @@ export class UsuarioListaComponent implements OnInit {
   
   public usuarioListaCarregada: Array<Usuario> = [];
   public usuarioLista: Array<Usuario> = [];  
-  public quatidadeRegistro: number;
+  public quatidadeRegistro: number = 0;
   public registroCarregado:number = 5;
   public pagina:number = 0;
 

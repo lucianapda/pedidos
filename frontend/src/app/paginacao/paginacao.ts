@@ -44,9 +44,7 @@ export class KzPaginacaoComponent implements OnInit {
 	 * Gera os links de paginação.
 	 */
 	gerarLinks() {
-        this.exibirProximo = this.qtdPaginas !== this.pagina;
-        console.log(this.qtdPaginas);
-        console.log('pagina' +this.pagina)
+        this.exibirProximo = this.qtdPaginas !== this.pagina;        
 		this.paginas = [];
 		let iniAdjacente = (this.pagina - this.qtdAdjacentes <= 0) ? 1 : 
 				(this.pagina - this.qtdAdjacentes);

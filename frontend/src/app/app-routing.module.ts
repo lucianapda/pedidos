@@ -13,11 +13,9 @@ import {ProdutoListaResolve} from "./shared/service/produto/produtoLista.resolve
 import {ProdutoResolve} from './shared/service/produto/produto.resolve';
 
 
-const routes: Routes = [
+const routes: Routes = [  
+  { path: '', redirectTo:'login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'usuario', component: UsuarioComponent },
-  { path: 'pedido', component: PedidoComponent },
-  { path: 'caixa', component: CaixaComponent },
   { path: 'login', component: LoginComponent },
   { path: 'produtoLista', component: ProdutoListaComponent,resolve: {
     produtoListaResolve: ProdutoListaResolve
@@ -26,6 +24,9 @@ const routes: Routes = [
     produtoResolve: ProdutoResolve
   } },
   { path: 'usuarioLista', component: UsuarioListaComponent },
+  { path: 'usuario/:usuarioId', component: UsuarioComponent },
+  { path: 'pedido', component: PedidoComponent },
+  { path: 'caixa', component: CaixaComponent }  
 ];
 
 @NgModule({

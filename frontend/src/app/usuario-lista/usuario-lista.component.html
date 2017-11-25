@@ -1,6 +1,6 @@
 <div class="panel panel-default">
   <div class="panel-body">
-    <button class="btn btn-primary" routerLink="/usuario">Adicionar</button>
+    <button class="btn btn-primary" [routerLink]="['/usuario', 0]">Adicionar</button>    
   </div>
 </div>
 <div class="panel panel-default">
@@ -11,10 +11,10 @@
     <form>
       <div class="row">
         <div class="card-produto-lista">
-          <div class="alert alert-info" role="alert" *ngIf="usuarioLista.length == 0">
+          <div class="alert alert-info" role="alert" *ngIf="quatidadeRegistro == 0">
             <label>Não tem produtos cadastrados</label>
           </div>
-          <table class="table table-striped" *ngIf="usuarioLista.length != 0">
+          <table class="table table-striped" *ngIf="quatidadeRegistro != 0">
             <thead>
             <tr>
               <th>
@@ -44,7 +44,7 @@
           </table>
           <kz-paginacao 
           [qtdPorPagina]="registroCarregado" 
-          [totalRegistros]="usuarioListaCarregada.length"
+          [totalRegistros]="quatidadeRegistro"
           [qtdAdjacentes]="3"
           (onPaginate)="paginar($event)">
         </kz-paginacao>

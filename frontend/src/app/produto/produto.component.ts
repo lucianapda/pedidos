@@ -38,7 +38,9 @@ export class ProdutoComponent implements OnInit {
         })
         .subscribe(() =>{
           this.toast.success("Sucesso", "O produto foi cadastrado");
-        });
+        },((error)=>{
+          this.toast.error(error.error.message);
+        }));
     }else{
       this.http
         .post('http://localhost:8080/rest/product', this.produto, {
@@ -46,7 +48,9 @@ export class ProdutoComponent implements OnInit {
         })
         .subscribe(() =>{
           this.toast.success("Sucesso", "O produto foi cadastrado");
-        });  
+        },((error)=>{
+          this.toast.error(error.error.message);
+        }));  
     }
   }
 
