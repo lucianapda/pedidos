@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {ToastModule} from "ng2-toastr/ng2-toastr";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
+import { CurrencyMaskModule } from "ng2-currency-mask";
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -17,7 +18,7 @@ import { ProdutoComponent } from './produto/produto.component';
 import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
 import { UsuarioListaComponent } from './usuario-lista/usuario-lista.component';
 import { KzPaginacaoComponent} from './paginacao/paginacao';
-// import { PedidoListaComponent } from './pedido-lista/pedido-lista.component';
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -30,16 +31,17 @@ import { KzPaginacaoComponent} from './paginacao/paginacao';
     ProdutoComponent,
     ProdutoListaComponent,
     UsuarioListaComponent,
-    KzPaginacaoComponent
-    // PedidoListaComponent
+    KzPaginacaoComponent    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
     FormsModule,
+    SharedModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    CurrencyMaskModule,
     HttpClientModule,
     ToastModule.forRoot()
   ],

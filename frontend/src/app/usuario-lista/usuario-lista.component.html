@@ -11,7 +11,10 @@
     <form>
       <div class="row">
         <div class="card-produto-lista">
-          <table class="table table-striped">
+          <div class="alert alert-info" role="alert" *ngIf="usuarioLista.length == 0">
+            <label>Não tem produtos cadastrados</label>
+          </div>
+          <table class="table table-striped" *ngIf="usuarioLista.length != 0">
             <thead>
             <tr>
               <th>

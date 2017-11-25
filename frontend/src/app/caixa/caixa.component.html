@@ -25,19 +25,19 @@
             Total a pagar: R$ {{valorTotal}}
           </div>
         <div class="col-md-5">
-          <button class="btn btn-default" (click)="pagar()">Pagar  
+          <button class="btn btn-default" (click)="pagar()">Pagar
           </button>
         </div>
       </form>
 
-    </div>    
+    </div>
     <div class="panel panel-default"></div>
     <div class="row">
       <div class="card-produto-lista">
-          <div class="alert alert-info" role="alert" *ngIf="!pedidos">
+          <div class="alert alert-info" role="alert" *ngIf="pedidos.length == 0">
             <label>Não tem nenhuma mesa selecionada</label>
-          </div>
-        <table class="table table-striped" *ngIf="pedidos">
+          </div>      
+        <table class="table table-striped" *ngIf="pedidos.length != 0">
           <thead>
             <tr>
               <th>

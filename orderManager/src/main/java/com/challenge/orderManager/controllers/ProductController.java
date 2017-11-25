@@ -54,6 +54,6 @@ public class ProductController {
 	@RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ProductDTO merge(@RequestBody ProductDTO productDto) throws Exception {
 		Product product = productAdition.save(productDto);
-		return new ProductDTO();
+		return new ProductDTO(product);
 	}
 }

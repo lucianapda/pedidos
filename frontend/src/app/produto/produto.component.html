@@ -27,8 +27,8 @@
           <label>Preço</label>
           <label class="required">*</label>
           <input class="form-control" [ngClass]="{ 'input-invalid' : verificaErro(preco) || verificaNumeroMaiorPermitido() || verificaNumeroMenorPermitido()}"
-            id="preco" #preco="ngModel" name="preco" [(ngModel)]="produto.price" type="number" min="0" min="{{minNumero}}"
-            max="{{maxNumero}}" required style="direction: rtl;" />
+            id="preco" #preco="ngModel" name="preco" [(ngModel)]="produto.price" min="0" min="{{minNumero}}"
+            max="{{maxNumero}}" required currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" />
           <span class="required" *ngIf="verificaErro(preco)">Campo obrigatorio</span>
           <span class="required" *ngIf="verificaNumeroMaiorPermitido()">O valor do produto não pode ser maior que 1000 reais</span>
           <span class="required" *ngIf="verificaNumeroMenorPermitido()">O valor do produto não pode ser menor que 0 reais</span>
