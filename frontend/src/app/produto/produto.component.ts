@@ -30,7 +30,9 @@ export class ProdutoComponent implements OnInit {
     })
     .subscribe((response) =>{      
       this.toast.success("Sucesso", "O produto foi cadastrado");
-    });
+    },((error)=>{
+      this.toast.error(error.error.message);
+    }));
   }
 
   cancelar(){

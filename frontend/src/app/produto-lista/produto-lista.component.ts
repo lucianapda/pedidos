@@ -13,7 +13,7 @@ export class ProdutoListaComponent implements OnInit {
   
   public produtoLista: Array<Produto> = [];
   public produtoListaCarregado: Array<Produto> = [];
-  public quatidadeRegistro: number;
+  public quatidadeRegistro: number = 0;
   public registroCarregado:number = 5;
   public pagina:number = 0;
 

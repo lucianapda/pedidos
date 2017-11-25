@@ -9,19 +9,18 @@ import { LoginComponent } from './login/login.component';
 import { ProdutoComponent } from './produto/produto.component';
 import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
 import { UsuarioListaComponent } from './usuario-lista/usuario-lista.component';
-// import { PedidoListaComponent } from './pedido-lista/pedido-lista.component';
 
 
-const routes: Routes = [
+const routes: Routes = [  
+  { path: '', redirectTo:'login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'usuario', component: UsuarioComponent },
-  { path: 'pedido', component: PedidoComponent },
-  { path: 'caixa', component: CaixaComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'usuario/:usuarioId', component: UsuarioComponent },
+  { path: 'pedido', component: PedidoComponent },
+  { path: 'caixa', component: CaixaComponent },  
   { path: 'produtoLista', component: ProdutoListaComponent },
   { path: 'produto', component: ProdutoComponent },
-  { path: 'usuarioLista', component: UsuarioListaComponent },
-  // { path: 'pedidoLista', component: PedidoListaComponent }
+  { path: 'usuarioLista', component: UsuarioListaComponent }  
 ];
 
 @NgModule({
