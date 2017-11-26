@@ -46,7 +46,7 @@ export class ProdutoListaComponent implements OnInit {
       headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
     })
     .subscribe(() =>{
-      this.toast.success("Sucesso", "O produto foi cadastrado");
+      this.toast.success("Sucesso", "O produto foi removido");
     },((error)=>{
       this.toast.error(error.error.message);
     }));

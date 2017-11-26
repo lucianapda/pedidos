@@ -14,7 +14,7 @@ import { ActivatedRoute  } from '@angular/router';
 })
 export class UsuarioComponent implements OnInit {
 
-  public usuario: Usuario = new Usuario("","","","");
+  public usuario: Usuario = new Usuario("","","","","");
   public listaTipoUsuario: Array<TipoUsuario> = [];
   public isEditModel: boolean = false;
 
@@ -50,8 +50,7 @@ export class UsuarioComponent implements OnInit {
       .post('http://localhost:8080/rest/user', this.usuario, {
         headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
       })
-      .subscribe((response) =>{
-        console.log(response);
+      .subscribe((response) =>{        
         this.toast.success("Sucesso", "O produto foi cadastrado");
       }, ((error)=>{
         this.toast.error(error.error.message);

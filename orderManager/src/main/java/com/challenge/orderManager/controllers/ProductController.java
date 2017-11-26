@@ -51,6 +51,7 @@ public class ProductController {
 	public ProductDTO delete(@PathVariable long productId) throws Exception {		
 		try {
 			Product product = productRepository.getProduct(productId);
+			productRepository.delete(product);
 			return new ProductDTO(product);
 		} catch (Exception e) {
 			throw new Exception("Não foi possivel remover o produto"); 

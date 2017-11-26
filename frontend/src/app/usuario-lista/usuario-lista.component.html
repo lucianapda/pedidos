@@ -32,15 +32,18 @@
                   </tr>
                   </thead>
                   <tbody>              
-                        <tr *ngFor="let usuario of usuarioLista; let i = index" routerLink="/usuario/{{usuario.id}}">              
-                          <td>
+                        <tr *ngFor="let usuario of usuarioLista; let i = index">              
+                          <td routerLink="/usuario/{{usuario.id}}">
                             {{usuario.name}}
                           </td>
-                          <td>
+                          <td routerLink="/usuario/{{usuario.id}}">
                             {{usuario.email}}
                           </td>
-                          <td>
+                          <td routerLink="/usuario/{{usuario.id}}">
                             {{buscaTipoUsuario(usuario.type)}}
+                          </td>
+                          <td>
+                            <button class="btn btn-default" (click)="removerUsuario(usuario.id)"><i class="glyphicon glyphicon-trash"></i></button>
                           </td>
                         </tr>              
                   </tbody>

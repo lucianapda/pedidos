@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {Usuario} from "../usuario/Usuario";
 import {UsuarioLista} from './UsuarioLista';
 import { Location } from '@angular/common';
+import {ToastsManager} from "ng2-toastr/ng2-toastr";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-usuario-lista',
@@ -18,7 +20,7 @@ export class UsuarioListaComponent implements OnInit {
   public registroCarregado:number = 5;
   public pagina:number = 0;
 
-  constructor(private route: ActivatedRoute, public location: Location) { }
+  constructor(private route: ActivatedRoute, public location: Location, private http: HttpClient, public toast: ToastsManager, public vcr:ViewContainerRef) { }
 
   ngOnInit() {    
     if (!localStorage.getItem('token')){      
@@ -26,16 +28,7 @@ export class UsuarioListaComponent implements OnInit {
     }else{
       this.usuarioListaCarregada = this.route.snapshot.data.usuarioListaResolve.userList || [];
         this.quantidadeRegistro = this.usuarioListaCarregada.length;      
-        this.carregaUsuario();
-      // this.http
-      // .get('http://localhost:8080/rest/user/all', {
-      //   headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
-      // })
-      // .subscribe((response:UsuarioLista) =>{
-      //   this.usuarioListaCarregada = response.userList;
-      //   this.quantidadeRegistro = this.usuarioListaCarregada.length;      
-      //   this.carregaUsuario();
-      // });
+        this.carregaUsuario();      
     }    
   }
 
@@ -58,9 +51,33 @@ export class UsuarioListaComponent implements OnInit {
     }
   }
 
+  removerUsuario(usuarioId){    
+      let endPoint = "http://localhost:8080/rest/user/{usuarioId}";
+      endPoint = endPoint.replace('{usuarioId}', usuarioId);
+      this.http
+      .delete(endPoint, {
+        headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
+      })
+      .subscribe(() =>{        
+        this.removeUsuarioLista(usuarioId);
+        this.toast.success("Sucesso", "O usuario foi removido");
+      },((error)=>{
+        this.toast.error(error.error.message);
+      }));    
+  }
+
   paginar($event:any){    
     this.pagina = $event - 1;
     this.carregaUsuario();
+  }
+
+  private removeUsuarioLista(usuarioId){
+    for (let i = 0; i < this.usuarioListaCarregada.length; i++){
+      let usuario:Usuario = this.usuarioListaCarregada[i];
+      if (usuarioId == usuario.id){        
+        this.usuarioListaCarregada.splice(1, i);
+      }
+    }
   }
 
 }
