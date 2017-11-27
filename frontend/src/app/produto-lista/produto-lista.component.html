@@ -36,7 +36,7 @@
                     <td routerLink="/produto/{{produto.id}}">
                      {{produto.price | currency:'BRL':'symbol-narrow':'4.2-2'}}
                     </td>
-                    <td>
+                    <td class="btn-delete">
                       <button class="btn btn-default" (click)="removerProduto(produto.id)"><i class="glyphicon glyphicon-trash"></i></button>
                     </td>
                   </tr>

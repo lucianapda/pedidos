@@ -47,9 +47,25 @@ export class ProdutoListaComponent implements OnInit {
     })
     .subscribe(() =>{
       this.toast.success("Sucesso", "O produto foi removido");
+      this.removeProdutoLista(produtoId);
     },((error)=>{
       this.toast.error(error.error.message);
     }));
+  }
+
+  private removeProdutoLista(produtoId){
+    for (let i = 0; i < this.produtoListaCarregado.length; i++){
+      let produto:Produto = this.produtoListaCarregado[i];
+      if (produtoId == produto.id){        
+        this.produtoListaCarregado.splice(1, i);        
+      }
+    }
+    for (let y = 0; y < this.produtoLista.length; y++){
+      let produto:Produto = this.produtoLista[y];
+      if (produtoId == produto.id){        
+        this.produtoLista.splice(1, y);        
+      }
+    }
   }
 
   paginar($event:any){    

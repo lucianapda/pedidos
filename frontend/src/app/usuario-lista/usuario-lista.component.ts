@@ -20,7 +20,9 @@ export class UsuarioListaComponent implements OnInit {
   public registroCarregado:number = 5;
   public pagina:number = 0;
 
-  constructor(private route: ActivatedRoute, public location: Location, private http: HttpClient, public toast: ToastsManager, public vcr:ViewContainerRef) { }
+  constructor(private route: ActivatedRoute, public location: Location, private http: HttpClient, public toast: ToastsManager, public vcr:ViewContainerRef) { 
+    this.toast.setRootViewContainerRef(vcr);
+  }
 
   ngOnInit() {    
     if (!localStorage.getItem('token')){      
@@ -58,9 +60,9 @@ export class UsuarioListaComponent implements OnInit {
       .delete(endPoint, {
         headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
       })
-      .subscribe(() =>{        
-        this.removeUsuarioLista(usuarioId);
+      .subscribe((response) =>{                        
         this.toast.success("Sucesso", "O usuario foi removido");
+        this.removeUsuarioLista(usuarioId);
       },((error)=>{
         this.toast.error(error.error.message);
       }));    
@@ -75,7 +77,13 @@ export class UsuarioListaComponent implements OnInit {
     for (let i = 0; i < this.usuarioListaCarregada.length; i++){
       let usuario:Usuario = this.usuarioListaCarregada[i];
       if (usuarioId == usuario.id){        
-        this.usuarioListaCarregada.splice(1, i);
+        this.usuarioListaCarregada.splice(1, i);        
+      }
+    }
+    for (let y = 0; y < this.usuarioLista.length; y++){
+      let usuario:Usuario = this.usuarioLista[y];
+      if (usuarioId == usuario.id){        
+        this.usuarioLista.splice(1, y);        
       }
     }
   }

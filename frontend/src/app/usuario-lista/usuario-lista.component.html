@@ -42,7 +42,7 @@
                           <td routerLink="/usuario/{{usuario.id}}">
                             {{buscaTipoUsuario(usuario.type)}}
                           </td>
-                          <td>
+                          <td class="btn-delete">
                             <button class="btn btn-default" (click)="removerUsuario(usuario.id)"><i class="glyphicon glyphicon-trash"></i></button>
                           </td>
                         </tr>              

@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProdutoComponent implements OnInit {
 
-  public produto: Produto = new Produto("", 0);
+  public produto: Produto = new Produto(0,"", 0);
   public maxNumero = 1000;
   public minNumero = 0;
   public moneyValue: number = 0;

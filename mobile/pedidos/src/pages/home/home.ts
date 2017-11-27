@@ -3,6 +3,7 @@ import { NavController, AlertController } from 'ionic-angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Pedidos} from './Pedidos';
 import {PedidoProduto} from './PedidoProduto';
+import {LoginPage} from '../login/login';
 
 
 import {Produto} from './Produto';
@@ -26,35 +27,47 @@ export class HomePage implements OnInit{
   }
 
   ngOnInit() {
-    this.http
-    .get('http://192.168.43.129:8080/rest/product/all', {
-      headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
-    })
-    .subscribe((response:ProdutoLista) =>{
-      this.produtoList = response.productList;
-    });
+    if (localStorage.getItem('token') == null){
+      this.navCtrl.push(LoginPage);
+    }else{
+      this.http
+      .get('http://192.168.0.27:8080/rest/product/all', {
+        headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
+      })
+      .subscribe((response:ProdutoLista) =>{
+        this.produtoList = response.productList;
+      });
+    }    
   }
 
   verificar(){
-    let produtoSelecionado: Produto;
+    let produtoSelecionado: Produto = null;
     for (let i = 0; i < this.produtoList.length; i++){
       if (parseInt(this.codProduto) == this.produtoList[i].id){
         produtoSelecionado = this.produtoList[i];
       }
     }
-    let alert = this.alertCtrl.create({
-      message: 'Valor do produto:' + produtoSelecionado.price + "R$",      
-      subTitle: 'Produto:' + produtoSelecionado.name,
-      buttons: ['OK']
-    });
+
+    let alert;
+    if (produtoSelecionado == null){
+      alert = this.alertCtrl.create({
+        message: "Produto não encontrado",              
+        buttons: ['OK']
+      });
+    }else{
+      alert = this.alertCtrl.create({
+        message: 'Valor do produto:' + produtoSelecionado.price + "R$",      
+        subTitle: 'Produto:' + produtoSelecionado.name,
+        buttons: ['OK']
+      });
+    }    
     alert.present();
   }
 
   salvar(){    
-    this.pedidos = new Pedidos(this.produtoSelecionadoLista, this.mesa, 0);
-    console.log(this.pedidos);
+    this.pedidos = new Pedidos(this.produtoSelecionadoLista, this.mesa, 0);    
     this.http
-    .post('http://192.168.43.129:8080/rest/order', this.pedidos, {
+    .post('http://192.168.0.27:8080/rest/order', this.pedidos, {
       headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
     })
     .subscribe((response) =>{
@@ -68,6 +81,10 @@ export class HomePage implements OnInit{
         this.produtoSelecionadoLista.push(new PedidoProduto(this.produtoList[i], 0, this.quantidadeProduto));
       }
     }    
+  }
+
+  eValido(): boolean{
+    return this.codProduto == "" || this.mesa == null || this.quantidadeProduto == null;
   }
 
   removeLista(index){
