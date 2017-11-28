@@ -21,7 +21,7 @@ export class LoginPage {
   }
 
   entrar(){
-    this.http.post('http://192.168.0.27:8080/login', this.login)
+    this.http.post('http://192.168.43.129:8080/login', this.login)
     .subscribe((response:Token) => {      
       localStorage.setItem('token', response.token);
       this.navCtrl.push(HomePage);

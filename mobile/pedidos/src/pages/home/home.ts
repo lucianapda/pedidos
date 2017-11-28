@@ -31,7 +31,7 @@ export class HomePage implements OnInit{
       this.navCtrl.push(LoginPage);
     }else{
       this.http
-      .get('http://192.168.0.27:8080/rest/product/all', {
+      .get('http://192.168.43.129:8080/rest/product/all', {
         headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
       })
       .subscribe((response:ProdutoLista) =>{
@@ -67,7 +67,7 @@ export class HomePage implements OnInit{
   salvar(){    
     this.pedidos = new Pedidos(this.produtoSelecionadoLista, this.mesa, 0);    
     this.http
-    .post('http://192.168.0.27:8080/rest/order', this.pedidos, {
+    .post('http://192.168.43.129:8080/rest/order', this.pedidos, {
       headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
     })
     .subscribe((response) =>{

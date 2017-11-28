@@ -5,7 +5,7 @@
   <div class="panel-body">
     <div class="row">
       <form>
-        <div class="col-md-7">
+        <div class="col-md-6">
           <div class="form-group">
             <label>Mesa</label>
             <label class="required">*</label>
@@ -13,31 +13,29 @@
           </div>
 
         </div>
-        <div class="col-md-1">
+        <div class="col-md-6">
           <button class="btn btn-default" (click)="buscaPedido()">Buscar
             <i class="glyphicon glyphicon-search"></i>
           </button>
         </div>
-        <div class="col-md-4" *ngIf="pedidos">
-          Nº Pedido: {{pedidos.orderId}}
+        <div class="col-md-12" *ngIf="pedidos" style="padding-bottom: 10px">
+          <span>Nº Pedido: {{pedidos.orderId}}</span>
         </div>
-        <div class="col-md-4" *ngIf="pedidos">
-            Total a pagar: R$ {{valorTotal}}
+        <div class="col-md-12" *ngIf="pedidos">
+            <span>Total a pagar: R$ {{valorTotal}}</span>
           </div>
-        <div class="col-md-5">
-          <button class="btn btn-default" (click)="pagar()">Pagar
+        <div class="col-md-12">
+          <button style="float: right" class="btn btn-default" (click)="pagar()">Pagar
           </button>
         </div>
       </form>
-
-    </div>
-    <div class="panel panel-default"></div>
+    </div>    
     <div class="row">
       <div class="card-produto-lista">
-          <div class="alert alert-info" role="alert" *ngIf="pedidos.length == 0">
+          <div class="alert alert-info" style="margin-left: 10px; margin-right: 10px" role="alert" *ngIf="pedidos == null">
             <label>Não tem nenhuma mesa selecionada</label>
           </div>      
-        <table class="table table-striped" *ngIf="pedidos.length != 0">
+        <table class="table table-striped" *ngIf="pedidos != null">
           <thead>
             <tr>
               <th>
