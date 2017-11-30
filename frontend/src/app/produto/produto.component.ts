@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProdutoComponent implements OnInit {
 
-  public produto: Produto = new Produto("", 0);
+  public produto: Produto = new Produto(0,"", 0);
   public maxNumero = 1000;
   public minNumero = 0;
   public moneyValue: number = 0;
@@ -38,15 +38,20 @@ export class ProdutoComponent implements OnInit {
         })
         .subscribe(() =>{
           this.toast.success("Sucesso", "O produto foi cadastrado");
-        });
+        },((error)=>{
+          this.toast.error(error.error.message);
+        }));
     }else{
       this.http
         .post('http://localhost:8080/rest/product', this.produto, {
           headers: new HttpHeaders().set('authorization', 'Bearer ' + localStorage.getItem('token')),
         })
         .subscribe(() =>{
+          console.log("produto novo");
           this.toast.success("Sucesso", "O produto foi cadastrado");
-        });  
+        },((error)=>{
+          this.toast.error(error.error.message);
+        }));  
     }
   }
 

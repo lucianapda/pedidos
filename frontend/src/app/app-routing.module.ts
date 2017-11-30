@@ -11,13 +11,13 @@ import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
 import { UsuarioListaComponent } from './usuario-lista/usuario-lista.component';
 import {ProdutoListaResolve} from "./shared/service/produto/produtoLista.resolve";
 import {ProdutoResolve} from './shared/service/produto/produto.resolve';
+import {UsuarioResolve} from './shared/service/usuario/usuario.resolve';
+import {UsuarioListaResolve} from './shared/service/usuario/usuarioLista.resolve';
 
 
-const routes: Routes = [
+const routes: Routes = [  
+  { path: '', redirectTo:'login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'usuario', component: UsuarioComponent },
-  { path: 'pedido', component: PedidoComponent },
-  { path: 'caixa', component: CaixaComponent },
   { path: 'login', component: LoginComponent },
   { path: 'produtoLista', component: ProdutoListaComponent,resolve: {
     produtoListaResolve: ProdutoListaResolve
@@ -25,7 +25,14 @@ const routes: Routes = [
   { path: 'produto/:produtoId', component: ProdutoComponent,resolve: {
     produtoResolve: ProdutoResolve
   } },
-  { path: 'usuarioLista', component: UsuarioListaComponent },
+  { path: 'usuarioLista', component: UsuarioListaComponent,resolve: {
+    usuarioListaResolve: UsuarioListaResolve
+  }  },
+  { path: 'usuario/:usuarioId', component: UsuarioComponent,resolve: {
+    usuarioResolve: UsuarioResolve
+  }  },
+  { path: 'pedido', component: PedidoComponent },
+  { path: 'caixa', component: CaixaComponent }  
 ];
 
 @NgModule({

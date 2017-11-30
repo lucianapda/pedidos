@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.challenge.orderManager.dtos.UserDTO;
 import com.challenge.orderManager.dtos.UserListDTO;
+import com.challenge.orderManager.entities.User;
 import com.challenge.orderManager.interactions.UserAdition;
 import com.challenge.orderManager.repositories.UserRepository;
 
@@ -43,8 +44,10 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
-	public void delete(@PathVariable String userId) {
-		userRepository.delete(userId);
+	public UserDTO delete(@PathVariable String userId) {
+		User usuario = userRepository.findOne(userId);
+		userRepository.delete(userId);	
+		return new UserDTO(usuario);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)

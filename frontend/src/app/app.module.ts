@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { ProdutoComponent } from './produto/produto.component';
 import { ProdutoListaComponent } from './produto-lista/produto-lista.component';
 import { UsuarioListaComponent } from './usuario-lista/usuario-lista.component';
+import { KzPaginacaoComponent} from './paginacao/paginacao';
 import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
@@ -29,7 +30,8 @@ import {SharedModule} from "./shared/shared.module";
     LoginComponent,
     ProdutoComponent,
     ProdutoListaComponent,
-    UsuarioListaComponent
+    UsuarioListaComponent,
+    KzPaginacaoComponent    
   ],
   imports: [
     BrowserModule,

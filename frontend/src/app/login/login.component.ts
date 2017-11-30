@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
     this.http.post('http://localhost:8080/login', this.login)
     .subscribe((response:Token) => {
       localStorage.setItem('token', response.token);
+      window.location.href = '/home';
     });
   }
 
